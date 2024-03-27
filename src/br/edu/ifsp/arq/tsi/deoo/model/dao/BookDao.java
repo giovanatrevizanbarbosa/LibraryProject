@@ -1,15 +1,15 @@
 package br.edu.ifsp.arq.tsi.deoo.model.dao;
 
+import java.util.Set;
+
 import br.edu.ifsp.arq.tsi.deoo.model.Book;
 
 public interface BookDao {
     Set<Book> getAll();
 
-    Book findById(int id);
+    Book findBookById(int id);
 
-    boolean insert(Book book);
+    boolean insertBook(Book book);
 
-    boolean update(Book currentBook, Book newBook);
-
-    boolean delete(int id);
+    boolean deleteBook(int id);
 }

@@ -1,13 +1,15 @@
 package br.edu.ifsp.arq.tsi.deoo.model.dao;
 
+import br.edu.ifsp.arq.tsi.deoo.model.User;
+
+import java.util.Set;
+
 public interface UserDao {
     Set<User> getAll();
 
-    User findById(int id);
+    User findUserById(int id);
 
-    boolean insert(User user);
+    boolean insertUser(User user);
 
-    boolean update(User currentUser, User newUser);
-
-    boolean delete(int id);
+    boolean deleteUser(int id);
 }
