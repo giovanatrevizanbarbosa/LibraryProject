@@ -1,6 +1,6 @@
 package br.edu.ifsp.arq.tsi.deoo.controller;
 
-import java.util.Iterator;
+import java.util.Set;
 
 import br.edu.ifsp.arq.tsi.deoo.model.User;
 import br.edu.ifsp.arq.tsi.deoo.model.dao.UserDao;
@@ -12,37 +12,39 @@ public class UserController {
     private UserDao userDao;
     private UserView view;
 
+    Set<User> users = userDao.getAll();
+
     public UserController(UserView view) {
         this.view = view;
-        userDao = new UserDaoImpl.getInstance();
+        userDao = UserDaoImpl.getInstance();
     }
 
     public boolean registerUser(User user) {
-        if(userDao.findById(user.getId()) == null) {
-            userDao.insert(user);
+        if(userDao.findUserById(user.getId()) == null) {
+            userDao.insertUser(user);
             return true;
         }
         return false;
     }
 
+    public void allUsers() {
+        for (User user : users) {
+            view.showUser(user);
+        }
+    }
+
     public void usersWithLentBooks() {
-        User user;
-        Iterator<User> iterator = userDao.getAll().iterator();
-        while(iterator.hasNext()) {
-            user = iterator.next();
+        for (User user : users) {
             if(user.getLentBooks().size() > 0) {
-                view.showUsersServingPenalties();
+                view.showUsersServingPenalty(user);
             }
         }
     }
 
     public void usersServingPenalties() {
-        User user;
-        Iterator<User> iterator = userDao.getAll().iterator();
-        while(iterator.hasNext()) {
-            user = iterator.next();
-            if(user.getHasPenalty()) {
-                view.showUsersServingPenalties();
+        for (User user : users) {
+            if(user.hasPenalty()) {
+                view.showUsersServingPenalty(user);
             }
         }
     }

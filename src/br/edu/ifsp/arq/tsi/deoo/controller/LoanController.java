@@ -1,6 +1,7 @@
 package br.edu.ifsp.arq.tsi.deoo.controller;
 
-import java.util.Iterator;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 import br.edu.ifsp.arq.tsi.deoo.model.Book;
 import br.edu.ifsp.arq.tsi.deoo.model.Loan;
@@ -13,14 +14,16 @@ public class LoanController {
 
     private LoanDao loanDao;
     private UserView view;
+
+    Set<Loan> loans = loanDao.getAll();
     
     public LoanController(UserView view) {
         this.view = view;
-        loanDao = new LoanDaoImpl.getInstance();
+        loanDao = LoanDaoImpl.getInstance();
     }
 
     public boolean createLoan(Book book, User user) {
-        if(book.isAvailable() && !user.getHasPenalty()) {
+        if(book.isAvailable() && !user.hasPenalty()) {
             loanDao.rentBook(book.getId(), user.getId());
             return true;
         }
@@ -28,12 +31,10 @@ public class LoanController {
     }
 
     public void lateLoans() {
-        Loan loan;
-        Iterator<Loan> iterator = loanDao.getAll().iterator();
-        while(iterator.hasNext()) {
-            loan = iterator.next();
-            if (loanDao.isLate(loan)) {
-                view.showLateLoans();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for (Loan loan : loans) {
+            if(loanDao.isLate(loan)) {
+                view.showLateLoan(loan, loan.getReturnDate().format(formatter));
             }
         }
     }

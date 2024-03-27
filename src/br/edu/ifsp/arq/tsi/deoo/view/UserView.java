@@ -1,15 +1,21 @@
 package br.edu.ifsp.arq.tsi.deoo.view;
 
+import br.edu.ifsp.arq.tsi.deoo.model.Book;
+import br.edu.ifsp.arq.tsi.deoo.model.Loan;
+import br.edu.ifsp.arq.tsi.deoo.model.User;
+
 public interface UserView {
-    void showAllBooks();
+    void showBook(Book book);
 
-    void showLentBooks();
+    void showLentBook(Book book);
 
-    void showLateLoans();
+    void showLoan(Loan loan, String returnDate);
 
-    void showBookLentQuantity();
+    void showLateLoan(Loan loan, String returnDate);
 
-    void showUsersWithLentBooks();
+    void showUser(User user);
 
-    void showUsersServingPenalties();
+    void showUsersWithLentBook(User user);
+
+    void showUsersServingPenalty(User user);
 }

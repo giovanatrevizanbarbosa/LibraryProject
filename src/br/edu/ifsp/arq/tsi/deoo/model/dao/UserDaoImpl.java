@@ -8,7 +8,7 @@ public class UserDaoImpl implements UserDao{
     private static UserDaoImpl instance;
     private Set<User> users;
 
-    public static UserDaoImpl getInstance(){
+    public static UserDao getInstance(){
         if(instance == null) instance = new UserDaoImpl();
         return instance;
     }

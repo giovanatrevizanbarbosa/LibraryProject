@@ -39,7 +39,7 @@ public abstract class User{
         return phoneNumber;
     }
 
-    public boolean getHasPenalty(){
+    public boolean hasPenalty(){
         return hasPenalty;
     }
 

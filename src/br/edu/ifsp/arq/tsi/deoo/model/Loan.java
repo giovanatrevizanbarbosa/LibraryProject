@@ -9,7 +9,6 @@ public class Loan{
     private LocalDate returnDate;
     private int lateDays;
 
-
     public LocalDate getRentDate() {
         return rentDate;
     }
