@@ -9,7 +9,7 @@ public abstract class User{
     private String name;
     private String email;
     private String phoneNumber;
-    private boolean hasPenalty;
+    private boolean hasPenalty = false;
     private Set<Book> lentBooks;
 
     public User(String name, String email, String phoneNumber){
@@ -43,9 +43,21 @@ public abstract class User{
         return hasPenalty;
     }
 
+    public void setPenalty(boolean penalty){
+        hasPenalty = penalty;
+    }
+
     public Set<Book> getLentBooks(){
         return lentBooks;
     }
 
     public abstract int returnDeadlineMaxDay();
+
+    public boolean isEmployee(User user){
+        return user instanceof Employee;
+    }
+    
+    public boolean isStudent(User user){
+        return user instanceof Student;
+    }
 }

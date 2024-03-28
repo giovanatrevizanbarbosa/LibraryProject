@@ -49,6 +49,10 @@ public class Book{
     public int getLentTimes(){
         return lentTimes;
     }
+    
+    public void setLentTimes(int lentValue){
+        lentTimes = lentValue;
+    }
 
     @Override
     public boolean equals(Object o) {

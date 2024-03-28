@@ -25,16 +25,20 @@ public class LoanDaoImpl implements LoanDao {
 
     @Override
     public Set<Loan> getAll() {
-        return null;
+        return loans;
     }
 
     @Override
     public boolean isLate(Loan loan) {
-        return false;
+        return loan.getLateDays() >= 1;
     }
 
     @Override
     public boolean rentBook(int bookId, int userId) {
+        for(Book b : books){
+            
+        }
+        
         return false;
     }
 

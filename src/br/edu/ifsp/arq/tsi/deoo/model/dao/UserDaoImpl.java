@@ -2,11 +2,16 @@ package br.edu.ifsp.arq.tsi.deoo.model.dao;
 
 import br.edu.ifsp.arq.tsi.deoo.model.User;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class UserDaoImpl implements UserDao{
     private static UserDaoImpl instance;
     private Set<User> users;
+
+    public UserDaoImpl(){
+        users = new HashSet<>();
+    }
 
     public static UserDao getInstance(){
         if(instance == null) instance = new UserDaoImpl();

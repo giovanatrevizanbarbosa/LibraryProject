@@ -25,4 +25,12 @@ public class Student extends User{
     public int returnDeadlineMaxDay(){
         return 5;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return this.getId() == student.getId();
+    }
 }
