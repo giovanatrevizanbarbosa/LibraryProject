@@ -34,7 +34,12 @@ public class LoanController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Loan loan : loans) {
             if(loanDao.isLate(loan)) {
-                view.showLateLoan(loan, loan.getReturnDate().format(formatter));
+                view.showLoan(loan.getId(), 
+                            loan.getBook().getTitle(), 
+                            loan.getUser().getName(),
+                            loan.getRentDate().format(formatter),
+                            loan.getReturnDate().format(formatter),
+                            loan.getLateDays());
             }
         }
     }

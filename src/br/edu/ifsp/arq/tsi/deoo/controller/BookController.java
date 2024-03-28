@@ -29,23 +29,33 @@ public class BookController {
 
     public void allBooks() {
         for(Book book : books) {
-            view.showBook(book);
+            view.showBook(book.getId(),
+                        book.getTitle(),
+                        book.getAuthor(),
+                        book.getEdition(),
+                        book.isAvailable(),
+                        book.getLentTimes());
         }
     }
 
     public void lentBooks() {
         for (Book book : books) {
             if(book.getLentTimes() > 0) {
-                view.showLentBook(book);
+                view.showBook(book.getId(),
+                            book.getTitle(),
+                            book.getAuthor(),
+                            book.getEdition(),
+                            book.isAvailable(),
+                            book.getLentTimes());
             }
         }
     }
 
-    private void load() {
-        bookDao.insertBook(new Book("Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin", "1st Edition"));
-        bookDao.insertBook(new Book("The Pragmatic Programmer: Your Journey to Mastery", "Andrew Hunt, David Thomas", "2nd Edition"));
-        bookDao.insertBook(new Book("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides", "1st Edition"));
-        bookDao.insertBook(new Book("Cracking the Coding Interview: 189 Programming Questions and Solutions", "Gayle Laakmann McDowell", "6th Edition"));
-        bookDao.insertBook(new Book("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", "3rd Edition"));
-    }
+    // private void load() {
+    //     bookDao.insertBook(new Book("Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin", "1st Edition"));
+    //     bookDao.insertBook(new Book("The Pragmatic Programmer: Your Journey to Mastery", "Andrew Hunt, David Thomas", "2nd Edition"));
+    //     bookDao.insertBook(new Book("Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides", "1st Edition"));
+    //     bookDao.insertBook(new Book("Cracking the Coding Interview: 189 Programming Questions and Solutions", "Gayle Laakmann McDowell", "6th Edition"));
+    //     bookDao.insertBook(new Book("Introduction to Algorithms", "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein", "3rd Edition"));
+    // }
 }

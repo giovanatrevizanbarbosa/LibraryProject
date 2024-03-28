@@ -29,14 +29,24 @@ public class UserController {
 
     public void allUsers() {
         for (User user : users) {
-            view.showUser(user);
+            view.showUser(user.getId(), 
+                        user.getName(), 
+                        user.getEmail(),
+                        user.getPhoneNumber(),
+                        user.hasPenalty(),
+                        user.getLentBooks().size());
         }
     }
 
     public void usersWithLentBooks() {
         for (User user : users) {
             if(user.getLentBooks().size() > 0) {
-                view.showUsersServingPenalty(user);
+                view.showUser(user.getId(), 
+                            user.getName(), 
+                            user.getEmail(),
+                            user.getPhoneNumber(),
+                            user.hasPenalty(),
+                            user.getLentBooks().size());
             }
         }
     }
@@ -44,7 +54,12 @@ public class UserController {
     public void usersServingPenalties() {
         for (User user : users) {
             if(user.hasPenalty()) {
-                view.showUsersServingPenalty(user);
+                view.showUser(user.getId(), 
+                            user.getName(), 
+                            user.getEmail(),
+                            user.getPhoneNumber(),
+                            user.hasPenalty(),
+                            user.getLentBooks().size());
             }
         }
     }
